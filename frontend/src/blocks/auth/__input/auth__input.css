@@ -1,0 +1,11 @@
+.auth__input {
+  padding: 0;
+  background-color: transparent;
+  width: 100%;
+  height: 25px;
+  color: rgba(255, 255, 255, 1);
+  outline: none;
+  border: none;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  margin: 0 auto 30px;
+}
