@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -7,7 +8,6 @@ const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFound = require('./errors/NotFound');
 
-const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { validateLogin, validatePostUser } = require('./middlewares/validation');
 
 const userRouter = require('./routes/users');
@@ -24,7 +24,11 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signin', validateLogin, login);
 app.post('/signup', validatePostUser, postUser);
@@ -37,8 +41,6 @@ app.use('/cards', cardRouter);
 app.use('*', (req, res, next) => {
   next(new NotFound('Запрашиваемый ресурс не найден'));
 });
-
-app.use(errorLogger);
 
 app.use(errors());
 app.use(errorHandler);

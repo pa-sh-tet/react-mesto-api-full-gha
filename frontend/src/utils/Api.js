@@ -13,7 +13,7 @@ class Api {
     return Promise.reject(`Возникла ошибка: ${res.status}`);
   }
   
-  //Получить начальные карточки
+  //Получить начальный карточки
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       headers: this._headers,
