@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable object-shorthand */
 const jwt = require('jsonwebtoken');
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const BadRequest = require('../errors/BadRequest');
@@ -126,7 +127,7 @@ module.exports.login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        'secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'secret-key',
         { expiresIn: '7d' },
       );
       res.cookie('jwt', token, { httpOnly: true, maxAge: 7 * 24 * 360000, sameSite: true });

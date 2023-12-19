@@ -59,37 +59,44 @@ function App() {
           console.log(error);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleRegister(email, password) {
     auth.register(email, password)
       .then((res) => {
         if (res) {
-          navigate("/sign-in", {replace: true});
-          setIsSuccess(true);           
+          setIsSuccess(true);
+          setIsLoginPopupOpen(true);
+          navigate("/sign-in", {replace: true});   
+        } else {
+          setIsSuccess(false);
+          setIsLoginPopupOpen(true);    
         }
       })
       .catch((error) => {
         console.log(error);
         setIsSuccess(false);
+        setIsLoginPopupOpen(true);
       })
-      .finally(() => setIsLoginPopupOpen(true));
+      //.finally(() => setIsLoginPopupOpen(true));
   }
 
   function handleLogin(email, password) {
     auth.authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res);
-        setUserEmail(email);
+        localStorage.setItem('jwt', res.token);
+        setIsLoggedIn(true);        
       })
       .then(() => {
-        setIsLoggedIn(true);
+        setUserEmail(email);
         navigate("/");
       })
       .catch((err) => {
-        console.log(err)
-        setIsSuccess(false)
-        setIsLoginPopupOpen(true)
+        console.log(err);
+        setIsLoggedIn(false);
+        setIsSuccess(false);
+        setIsLoginPopupOpen(true);
       })
   }
 
@@ -249,6 +256,6 @@ function App() {
       </div>
     </CurrentUserContext.Provider>
   )
-};
+}
 
 export default App;

@@ -93,7 +93,7 @@ class Api {
 }
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-74',
+  url: 'https://api.mesto-altapov.nomoredomainsmonster.ru',
   headers: {
     authorization: '1d76cac4-bc77-42fa-bf15-5d8cd3682348',
     "Content-Type": "application/json",

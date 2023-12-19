@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.mesto-altapov.nomoredomainsmonster.ru';
 
 const _getResponse = (res) => {
   if (res.ok) {
@@ -17,9 +17,7 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-  .then((res) => {
-    _getResponse(res)
-  })
+  .then(_getResponse)
 };
 
 export const authorize = (email, password) => {
@@ -31,9 +29,7 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-  .then((res) => {
-    _getResponse(res)
-  })
+  .then(_getResponse)
 };
 
 export const checkToken = (token) => {
@@ -45,7 +41,5 @@ export const checkToken = (token) => {
       'Authorization': `Bearer ${token}`,
     }
   })
-  .then((res) => {
-    _getResponse(res)
-  })
+  .then(_getResponse)
 }
