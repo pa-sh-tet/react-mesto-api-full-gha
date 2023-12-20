@@ -38,7 +38,7 @@ function App() {
       Promise.all([ api.getUserData(), api.getInitialCards() ])
         .then(([user, cards]) => {
           setCurrentUser(user);
-          setCards(cards);
+          setCards(cards.data);
         })
         .catch((error) => {
           console.log(error);
@@ -48,6 +48,7 @@ function App() {
 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
+    console.log(jwt);
     if (jwt) {
       auth.checkToken(jwt)
         .then((res) => {

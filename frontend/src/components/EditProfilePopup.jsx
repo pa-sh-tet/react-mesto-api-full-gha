@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 import PopupWithForm from './PopupWithForm.jsx';
@@ -12,14 +13,6 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setDescription(currentUser.about);
   }, [currentUser, isOpen]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    onUpdateUser({
-      name: name,
-      about: description,
-    });
-  }
-
   function handleNameChange(e) {
     setName(e.target.value)
   }
@@ -28,6 +21,13 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setDescription(e.target.value)
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({
+      name: name,
+      about: description,
+    });
+  }
   return (
     <PopupWithForm
       isOpen={isOpen}
