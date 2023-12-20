@@ -59,7 +59,7 @@ module.exports.postUser = (req, res, next) => {
 
 module.exports.getUserId = (req, res, next) => {
   User.findById(req.params.id)
-    .then((user) => res.status(success_code).send({ data: user }))
+    .then((user) => res.status(success_code).send(user))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new BadRequest('Пользователь с данным id не найден'));
