@@ -84,7 +84,7 @@ module.exports.patchUserInfo = (req, res, next) => {
   const { name, about } = req.body;
 
   User.findByIdAndUpdate(
-    req.params._id,
+    req.user._id,
     {
       name: name,
       about: about,
@@ -106,7 +106,7 @@ module.exports.patchUserAvatar = (req, res, next) => {
   const { avatar } = req.body;
 
   User.findByIdAndUpdate(
-    req.params._id,
+    req.user._id,
     { avatar: avatar },
     { new: true, runValidators: true },
   )
