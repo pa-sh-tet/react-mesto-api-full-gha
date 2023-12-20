@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-// eslint-disable-next-line import/no-unresolved
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const express = require('express');
