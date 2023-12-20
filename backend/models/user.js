@@ -8,20 +8,20 @@ const Unauthorized = require('../errors/Unauthorized');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    default: 'Жак-Ив Кусто',
     minlength: 2,
-    maxlength: 30
+    maxlength: 30,
+    default: 'Жак-Ив Кусто',
   },
   about: {
     type: String,
-    default: 'Исследователь',
     minlength: 2,
-    maxlength: 30
+    maxlength: 30,
+    default: 'Исследователь',
   },
   avatar: {
     type: String,
-    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     minlength: 2,
+    default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
     validate: validator.isURL
   },
   email: {
