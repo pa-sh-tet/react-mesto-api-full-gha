@@ -78,7 +78,7 @@ module.exports.deleteLike = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
-    .then((card) => res.status(success_code).send({ data: card }))
+    .then((card) => res.status(success_code).send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new BadRequest('Некорректный id карточки'));
