@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const cardRouter = require('express').Router();
 
 const { validateCard, validateCardId } = require('../middlewares/validation');

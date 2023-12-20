@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 const { celebrate, Joi } = require('celebrate');
 
 const regex = /^https?:\/\/(www\.)?[a-zA-Z0-9]+([.|-]{1}[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+(\/[0-9a-zA-Z\-._~:/?#[\]@!$&'()*+,;=]*#?)?$/;
