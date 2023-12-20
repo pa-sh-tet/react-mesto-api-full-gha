@@ -8,6 +8,7 @@ const cors = require('cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFound = require('./errors/NotFound');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { validateLogin, validatePostUser } = require('./middlewares/validation');
 
@@ -27,6 +28,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(requestLogger);
+
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
@@ -45,6 +48,7 @@ app.use('*', (req, res, next) => {
   next(new NotFound('Запрашиваемый ресурс не найден'));
 });
 
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
 
