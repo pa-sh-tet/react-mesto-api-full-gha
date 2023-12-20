@@ -58,7 +58,6 @@ module.exports.postUser = (req, res, next) => {
 };
 
 module.exports.getUserId = (req, res, next) => {
-  console.log(req.params);
   User.findById(req.params.id)
     .then((user) => res.status(success_code).send({ data: user }))
     .catch((err) => {
@@ -84,7 +83,6 @@ module.exports.getUserInfo = (req, res, next) => {
 
 module.exports.patchUserInfo = (req, res, next) => {
   const { name, about } = req.body;
-  console.log(req.user);
   User.findByIdAndUpdate(
     req.user._id,
     {
