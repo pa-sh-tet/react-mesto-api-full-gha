@@ -1,9 +1,11 @@
 /* eslint-disable no-console */
+// eslint-disable-next-line import/no-unresolved
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const auth = require('./middlewares/auth');
 const errorHandler = require('./middlewares/errorHandler');
 const NotFound = require('./errors/NotFound');
@@ -20,6 +22,8 @@ const { login, postUser } = require('./controllers/users');
 const app = express();
 
 app.use(cookieParser());
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
